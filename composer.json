@@ -1,0 +1,23 @@
+{
+  "name": "flagstudio/laravel-sms-ditrade",
+  "type": "library",
+  "description": "Integration with sms-gate ditrade",
+  "authors": [
+    {
+      "name": "Anatoly Elyutin",
+      "email": "anatolyu128@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "psr/http-message": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Flagstudio\\LaravelSmsDitrade\\": "src/"
+    }
+  },
+  "require-dev": {
+    "guzzlehttp/guzzle": "^7.0"
+  }
+}
