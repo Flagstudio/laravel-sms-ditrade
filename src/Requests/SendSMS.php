@@ -28,7 +28,7 @@ class SendSMS
 
     private string $method = 'POST';
 
-    private string $address = "/json/sm";
+    private string $address = "/regular/sm";
 
     public function __construct(string $message, string $originator)
     {
@@ -48,17 +48,27 @@ class SendSMS
 
     public function addPhone(string $phone): self
     {
+        if (str_starts_with($phone, '+')) {
+            $phone = mb_substr($phone, 1);
+        }
+
         $this->phones[] = $phone;
 
         return $this;
     }
 
-    public function getRequest(): array
+    public function getRequest(): string
     {
-        return [
-            'phones' => $this->phones,
-            'message' => $this->message,
-            'originator' => $this->originator,
-        ];
+        $phones = '[';
+
+        foreach ($this->phones as $phone) {
+            $phones .= $phone . ',';
+        }
+
+        return sprintf('&%s=%s&%s=%s&%s=%s',
+            'phones', $phones . ']',
+            'message', $this->message,
+            'originator', $this->originator,
+        );
     }
 }

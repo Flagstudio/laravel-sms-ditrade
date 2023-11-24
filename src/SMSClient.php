@@ -17,8 +17,8 @@ class SMSClient
         curl_setopt($curl, CURLOPT_URL, $this->configuration->getHost() . $request->getAddress());
         curl_setopt($curl, CURLOPT_POST, 1);
 
-        curl_setopt($curl, CURLOPT_POSTFIELDS, 'data=' . json_encode($request->getRequest()));
-        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, 'data=' . $request->getRequest());
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($curl, CURLOPT_USERPWD, $this->configuration->getLogin() . ':' . $this->configuration->getPassword());
         curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
         curl_setopt($curl, CURLOPT_TIMEOUT_MS, 1000);
